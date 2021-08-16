@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome Al Bank</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <h1 class="text-5xl text-center mt-16 font-normarl">
+            Yout Accout
+            <spna class="font-semibold text-purple-600">Details: </spna> !!
+        </h1>
+    </header>
+    <main class="w-3/4 mx-auto">
+        <!-- Balance and transaction  -->
+        <section class="mt-8">
+            <div class="grid grid-cols-3 gap-4 text-white">
+                <div class="bg-green-400 p-8 rounded">
+                    <div>
+                        <h3 class="text-2xl">Total Deposit</h3>
+                    </div>
+                    <div>
+                        <h3 class="text-5xl">$ <span id="deposit-amount">00</span></h3>
+                    </div>
+                </div>
+                <div class="bg-red-400 p-8 rounded">
+                    <div>
+                        <h3 class="text-2xl">Total Withdraw</h3>
+                    </div>
+                    <div>
+                        <h3 class="text-5xl">$ <span id="withdraw-amount">00</span></h3>
+                    </div>
+                </div>
+                <div class="bg-blue-400 p-8 rounded">
+                    <div>
+                        <h3 class="text-2xl">Total Balance</h3>
+                    </div>
+                    <div>
+                        <h3 class="text-5xl">$ <span id="total-amount">200</span></h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Deposit And Withraw Input field -->
+        <section class="mt-8">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-red-100 p-8 rounded">
+                    <h3 class="text-3xl mb-2">Please Deposit</h3>
+                    <input id="deposit-input" class="border-0 block rounded w-3/4 px-2 py-2 mb-4 outline-none"
+                        type="text" placeholder="$ Amount want to deposit" />
+                    <button id="deposit-btn"
+                        class="bg-indigo-700 border-0 outline-none px-4 py-2 text-white font-medium rounded-md"> Deposit
+                    </button>
+                </div>
+                <div class="bg-purple-200 p-8 rounded">
+                    <h3 class="text-3xl mb-2">Withdraw Amount</h3>
+                    <input id="withdraw-input" class="border-0 block rounded w-3/4 px-2 py-2 mb-4 outline-none"
+                        type="text" placeholder="$ Amount want to withraw" />
+                    <button id="withdraw-btn"
+                        class="bg-indigo-700 border-0 outline-none px-4 py-2 text-white font-medium rounded-md">
+                        Withdraw </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const depositAmount = document.getElementById('deposit-amount')
+        const depositInput = document.getElementById('deposit-input');
+        const depositBtn = document.getElementById('deposit-btn');
+
+        depositBtn.addEventListener('click', function () {
+            const newDepositValue = depositInput.value;
+            const currentDepositValue = depositAmount.innerText;
+            const totalDepositValue = parseFloat(newDepositValue) + parseFloat(currentDepositValue);
+
+            depositAmount.innerText = totalDepositValue;
+            depositInput.value = '';
+
+            const totalAmount = document.getElementById('total-amount');
+            const currentTotalAmount = parseFloat(totalAmount.innerText);
+            const allTotalAmount = currentTotalAmount + parseFloat(newDepositValue);
+
+            totalAmount.innerText = allTotalAmount;
+
+        });
+
+
+        const totalAmount = document.getElementById('total-amount');
+        const withdrawAmount = document.getElementById('withdraw-amount')
+        const withdrawInput = document.getElementById('withdraw-input');
+        const withdrawBtn = document.getElementById('withdraw-btn');
+
+        withdrawBtn.addEventListener('click', function (event) {
+
+
+            const newWithdrawValue = parseFloat(withdrawInput.value);
+            console.log(typeof (newWithdrawValue))
+
+
+            const currentWithdrawValue = parseFloat(withdrawAmount.innerText);
+            const totalWithdrawValue = newWithdrawValue + currentWithdrawValue;
+
+            withdrawAmount.innerText = totalWithdrawValue;
+
+            const totalWithdrawAmount = document.getElementById('total-amount');
+            const currentTotalAmount = parseFloat(totalWithdrawAmount.innerText);
+            const allTotalAmount = currentTotalAmount - newWithdrawValue;
+
+            totalAmount.innerText = allTotalAmount;
+            withdrawInput.value = '';
+
+        })
+      
+
+
+
+
+    </script>
+</body>
+
+</html>
